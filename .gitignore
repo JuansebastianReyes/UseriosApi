@@ -1,0 +1,11 @@
+.vscode/
+.obj/
+.Migrations/
+
+*.obj
+*.Migrations
+
+**/out/**
+**/bin/**
+**/obj/**
+./node_modules/**
