@@ -1,7 +1,9 @@
+using MediatR;
+
 namespace UsuariosApi.Models.Interfaces
 {
     public interface IPersonaRepository
     {
-        Task<Persona> CreatePersona(Persona persona);
+        Task<Unit> CreatePersona(Persona persona);
     }
 }
