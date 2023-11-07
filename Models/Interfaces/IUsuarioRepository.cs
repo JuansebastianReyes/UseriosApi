@@ -10,5 +10,6 @@ namespace UsuariosApi.Models.Interfaces
     {
         Task<Unit> CreateUsuario(UsuarioRegister userRegister);
         Task<bool> Login(UserLogin userLogin);
+        Task<int> CountUser();
     }
 }

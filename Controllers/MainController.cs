@@ -55,5 +55,21 @@ namespace UsuariosApi.Controllers
                 return Problem(e.Message);
             }
         }
+
+        [HttpGet("count")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetCount()
+        {
+            try
+            {
+                var count = await _usuarioRepository.CountUser();
+                return Ok(new { Count = count });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Error = "Internal Server Error", Message = ex.Message });
+            }
+        }
     }
 }

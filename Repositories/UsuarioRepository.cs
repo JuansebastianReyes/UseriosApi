@@ -92,5 +92,11 @@ namespace UsuariosApi.Repositories
             }
 
         }
+
+        public async Task<int> CountUser()
+        {
+            var count = await _context.Usuarios.CountAsync();
+            return count;
+        }
     }
 }
