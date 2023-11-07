@@ -8,7 +8,7 @@ namespace UsuariosApi.Models.Interfaces
 {
     public interface IUsuarioRepository
     {
-        Task<Unit> CreateUsuario(Persona persona);
+        Task<Unit> CreateUsuario(UsuarioRegister userRegister);
         Task<bool> Login(string usuario, string password);
     }
 }

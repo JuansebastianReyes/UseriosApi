@@ -4,6 +4,6 @@ namespace UsuariosApi.Models.Interfaces
 {
     public interface IPersonaRepository
     {
-        Task<Unit> CreatePersona(Persona persona);
+        Task<Persona> CreatePersona(Persona persona);
     }
 }

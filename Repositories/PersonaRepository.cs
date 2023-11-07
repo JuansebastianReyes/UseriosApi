@@ -14,14 +14,14 @@ namespace UsuariosApi.Repositories
             _context = context;
         }
 
-        public async Task<Unit> CreatePersona(Persona persona)
+        public async Task<Persona> CreatePersona(Persona persona)
         {
             _context.Personas.Add(persona);
             var valor = await _context.SaveChangesAsync();
 
             if (valor > 0)
             {
-                return Unit.Value;
+                return persona;
             }
 
             throw new Exception("Error en la inserción de la persona en la base de datos");        
