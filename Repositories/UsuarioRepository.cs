@@ -49,13 +49,13 @@ namespace UsuariosApi.Repositories
             throw new Exception("Error en la inserción de la persona en la base de datos");
         }
 
-        public async Task<bool> Login(string usuario, string password)
+        public async Task<bool> Login(UserLogin userLogin)
         {
-            var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.User == usuario);
+            var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.User == userLogin.Usuario);
 
             if (user != null)
             {
-                if (VerificarContraseña(password, user.Pass))
+                if (VerificarContraseña(userLogin.Password, user.Pass))
                 {
                     return true;
                 }

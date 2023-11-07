@@ -1,26 +1,58 @@
 using Microsoft.AspNetCore.Mvc;
+using UsuariosApi.Models;
+using UsuariosApi.Repositories;
 
 namespace UsuariosApi.Controllers
 {
-    [Route("[controller]")]
+    [ApiController]
+    [Route("api/")]
     public class MainController : Controller
     {
         private readonly ILogger<MainController> _logger;
+        private readonly UsuarioRepository _usuarioRepository;
 
-        public MainController(ILogger<MainController> logger)
+        public MainController(
+            ILogger<MainController> logger,
+            UsuarioRepository usuarioRepository
+        )
         {
             _logger = logger;
+            _usuarioRepository = usuarioRepository;
+        }
+        
+        [Route("login")]
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Login(UserLogin loginData){
+            try
+            {
+                bool login = await _usuarioRepository.Login(loginData);
+
+                return Ok(login);
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        [Route("login")]
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateUser(UsuarioRegister usuarioRegister){
+            try
+            {
+                var response = await _usuarioRepository.CreateUsuario(usuarioRegister);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
+                return Ok(response);
+
+            }
+            catch (Exception e)
+            {
+                return Problem(e.Message);
+            }
         }
     }
 }
