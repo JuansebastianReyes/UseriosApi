@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using UsuariosApi.Models;
+using UsuariosApi.Models.Interfaces;
 using UsuariosApi.Repositories;
 
 namespace UsuariosApi.Controllers
@@ -9,11 +10,11 @@ namespace UsuariosApi.Controllers
     public class MainController : Controller
     {
         private readonly ILogger<MainController> _logger;
-        private readonly UsuarioRepository _usuarioRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
         public MainController(
             ILogger<MainController> logger,
-            UsuarioRepository usuarioRepository
+            IUsuarioRepository usuarioRepository
         )
         {
             _logger = logger;
@@ -37,7 +38,7 @@ namespace UsuariosApi.Controllers
             }
         }
 
-        [Route("login")]
+        [Route("register")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

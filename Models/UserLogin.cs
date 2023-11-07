@@ -2,7 +2,7 @@ namespace UsuariosApi.Models
 {
     public class UserLogin
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string Usuario { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
     }
 }

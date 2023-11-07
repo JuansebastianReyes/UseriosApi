@@ -9,11 +9,11 @@ namespace UsuariosApi.Repositories
     public class UsuarioRepository : IUsuarioRepository
     {
         private readonly DBConection _context;
-        private readonly PersonaRepository _personaRepository;
+        private readonly IPersonaRepository _personaRepository;
 
         public UsuarioRepository(
             DBConection context,
-            PersonaRepository personaRepository)
+            IPersonaRepository personaRepository)
         {
             _context = context;
             _personaRepository = personaRepository;
@@ -61,7 +61,7 @@ namespace UsuariosApi.Repositories
                 }
             }
 
-            return false;
+            throw new Exception("Error en usuario o contraseña");
         }
 
         private bool VerificarContraseña(string contraseña, string contraseñaAlmacenada)
